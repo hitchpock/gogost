@@ -1,0 +1,211 @@
+@node News
+@unnumbered News
+
+@table @strong
+
+@anchor{Release 5.10.0}
+@item 5.10.0
+    @itemize
+    @item @code{mgm.MGM.Open} returns @code{mgm.InvalidTag} for failed authentication
+    @item Example @file{cmd/cer-dane-hash} and
+        @file{cmd/cer-selfsigned-example} utilities appeared
+    @end itemize
+
+@anchor{Release 5.9.1}
+@item 5.9.1
+Updated and cleaned up @file{go.sum}.
+
+@anchor{Release 5.9.0}
+@item 5.9.0
+@code{gost3410} is more thread-safe.
+
+@anchor{Release 5.8.0}
+@item 5.8.0
+Faster Kuznechik and ~3x faster Kuznechik-MGM.
+
+@anchor{Release 5.7.0}
+@item 5.7.0
+Go 1.17 requires @code{gost3410.PublicKey} to have @code{Equal} method.
+
+@anchor{Release 5.6.0}
+@item 5.6.0
+    @itemize
+    @item Add @code{gost3410.CurveIdtc26gost341012512paramSetTest} curve
+    @item More curve aliases:
+@verbatim
+CurveIdGostR34102001CryptoProAParamSet -> CurveIdtc26gost341012256paramSetB
+CurveIdGostR34102001CryptoProBParamSet -> CurveIdtc26gost341012256paramSetC
+CurveIdGostR34102001CryptoProCParamSet -> CurveIdtc26gost341012256paramSetD
+CurveIdGostR34102001CryptoProXchAParamSet -> CurveIdGostR34102001CryptoProAParamSet
+CurveIdGostR34102001CryptoProXchBParamSet -> CurveIdGostR34102001CryptoProCParamSet
+CurveIdtc26gost34102012256paramSetA -> CurveIdtc26gost341012256paramSetA
+CurveIdtc26gost34102012256paramSetB -> CurveIdtc26gost341012256paramSetB
+CurveIdtc26gost34102012256paramSetC -> CurveIdtc26gost341012256paramSetC
+CurveIdtc26gost34102012256paramSetD -> CurveIdtc26gost341012256paramSetD
+CurveIdtc26gost34102012512paramSetTest -> CurveIdtc26gost341012512paramSetTest
+CurveIdtc26gost34102012512paramSetA -> CurveIdtc26gost341012512paramSetA
+CurveIdtc26gost34102012512paramSetB -> CurveIdtc26gost341012512paramSetB
+CurveIdtc26gost34102012512paramSetC -> CurveIdtc26gost341012512paramSetC
+@end verbatim
+    @end itemize
+
+@anchor{Release 5.5.0}
+@item 5.5.0
+    @code{gost3410.PrivateKey} is in @code{gost3410.Curve.Q} now. That
+    makes them more friendly with some implementations.
+
+@anchor{Release 5.4.0}
+@item 5.4.0
+    Even slightly less allocations in Streebog.
+
+@anchor{Release 5.3.0}
+@item 5.3.0
+    ~16x speedup of Streebog, ~15x speedup of Kuznechik.
+
+@anchor{Release 5.2.0}
+@item 5.2.0
+    MGM does not panic when short (tagless) message is verified.
+
+@anchor{Release 5.1.1}
+@item 5.1.1
+    Tarball uses vendoring, instead of @env{GOPATH} overriding.
+    As minimal Go version is 1.12 for a long time, it supports modules.
+
+@anchor{Release 5.1.0}
+@item 5.1.0
+    @code{gost3410/KEK*} functions do not alter @code{ukm} argument.
+    It is safe to reuse now.
+
+@anchor{Release 5.0.0}
+@item 5.0.0
+    Backward incompatible remove of excess misleading @code{gost3410.Mode}
+    from all related functions. Point/key sizes are determined by
+    looking at curve's parameters size.
+
+@anchor{Release 4.3.0}
+@item 4.3.0
+    @strong{Fixed} nasty bug with Edwards curves using in 34.10-VKO
+    functions: curve's cofactor has not been used.
+
+@anchor{Release 4.2.4}
+@item 4.2.4
+    @code{gost3410.PrivateKeyReverseDigest} reversed digests and
+    @code{PrivateKeyReverseDigestAndSignature} with also reversed signatures
+    signers appeared for convenience.
+
+@anchor{Release 4.2.3}
+@item 4.2.3
+    Panic on all possible hash @code{Write} errors.
+
+@anchor{Release 4.2.2}
+@item 4.2.2
+    More 34.10-2012 test vectors.
+
+@anchor{Release 4.2.1}
+@item 4.2.1
+    Dummy release. More nicer tarballs.
+
+@anchor{Release 4.2.0}
+@item 4.2.0
+    @itemize
+    @item @code{PRF_IPSEC_PRFPLUS_GOSTR3411_2012_@{256,512@}} implementation
+    @item Generic @code{prf+} function (taken from IKEv2
+        (@url{https://tools.ietf.org/html/rfc5831.html, RFC 7296}))
+    @end itemize
+
+@anchor{Release 4.1.0}
+@item 4.1.0
+    @itemize
+    @item @code{ESPTREE}/@code{IKETREE} implementation
+    @item @code{CurveIdtc26gost34102012256paramSetB},
+        @code{CurveIdtc26gost34102012256paramSetC},
+        @code{CurveIdtc26gost34102012256paramSetD} curve aliases
+    @item Forbid any later GNU GPL version autousage
+        (project's licence now is GNU GPLv3 only)
+    @item Project now is @command{go get}-able and uses
+        @code{go.cypherpunks.ru} namespace:
+        @command{go get go.cypherpunks.ru/gogost},
+        @command{go get go.cypherpunks.ru/gogost/cmd/streebog@{256,512@}}
+    @end itemize
+
+@anchor{Release 4.0}
+@item 4.0
+    @itemize
+    @item Backward incompatible change: all keys passing to encryption
+        functions are slices now, not the fixed arrays. That heavily
+        simplifies the library usage
+    @item Fix bug with overwriting IVs memory in @code{gost28147.CFB*crypter}
+    @item @code{TLSTREE}, used in TLS 1.[23], implementation
+    @item @code{gost3410.KEK2012*} can be used with any curves, not only 512-bit ones
+    @item @code{gost3410.PrivateKey} satisfies @code{crypto.Signer} interface
+    @item @code{gost34112012*} hashes satisfy @code{encoding.Binary(Un)Marshaler}
+    @item Streebog256 HKDF test vectors
+    @end itemize
+
+@anchor{Release 3.0}
+@item 3.0
+    @itemize
+    @item Multilinear Galois Mode (MGM) block cipher mode for
+      64 and 128 bit ciphers
+    @item @code{KDF_GOSTR3411_2012_256} KDF
+    @item 34.12-2015 64-bit block cipher Магма (Magma)
+    @item Additional EAC 28147-89 Sbox
+    @item 34.10-2012 TC26 twisted Edwards curve related parameters
+    @item Coordinates conversion from twisted Edwards to Weierstrass
+      form and vice versa
+    @item Fixed @code{gost3410.PrivateKey}'s length validation
+    @item Backward incompatible change: @code{gost3410.NewCurve} takes
+      @code{big.Int}, instead of encoded integers
+    @item Backward incompatible Sbox and curves parameters renaming, to
+      comply with OIDs identifying them:
+@verbatim
+Gost2814789_TestParamSet       -> SboxIdGost2814789TestParamSet
+Gost28147_CryptoProParamSetA   -> SboxIdGost2814789CryptoProAParamSet
+Gost28147_CryptoProParamSetB   -> SboxIdGost2814789CryptoProBParamSet
+Gost28147_CryptoProParamSetC   -> SboxIdGost2814789CryptoProCParamSet
+Gost28147_CryptoProParamSetD   -> SboxIdGost2814789CryptoProDParamSet
+GostR3411_94_TestParamSet      -> SboxIdGostR341194TestParamSet
+Gost28147_tc26_ParamZ          -> SboxIdtc26gost28147paramZ
+GostR3411_94_CryptoProParamSet -> SboxIdGostR341194CryptoProParamSet
+EACParamSet                    -> SboxEACParamSet
+
+CurveParamsGostR34102001cc            -> CurveGostR34102001ParamSetcc
+CurveParamsGostR34102001Test          -> CurveIdGostR34102001TestParamSet
+CurveParamsGostR34102001CryptoProA    -> CurveIdGostR34102001CryptoProAParamSet
+CurveParamsGostR34102001CryptoProB    -> CurveIdGostR34102001CryptoProBParamSet
+CurveParamsGostR34102001CryptoProC    -> CurveIdGostR34102001CryptoProCParamSet
+CurveParamsGostR34102001CryptoProXchA -> CurveIdGostR34102001CryptoProXchAParamSet
+CurveParamsGostR34102001CryptoProXchB -> CurveIdGostR34102001CryptoProXchBParamSet
+CurveParamsGostR34102012TC26ParamSetA -> CurveIdtc26gost341012512paramSetA
+CurveParamsGostR34102012TC26ParamSetB -> CurveIdtc26gost341012512paramSetB
+@end verbatim
+    @item Various additional test vectors
+    @item go modules friendliness
+    @end itemize
+
+@anchor{Release 2.0}
+@item 2.0
+    @itemize
+    @item 34.11-2012 is split on two different modules:
+        @code{gost34112012256} and @code{gost34112012512}
+    @item 34.11-94's digest is reversed. Now it is compatible with TC26's
+      HMAC and PBKDF2 test vectors
+    @item @code{gogost-streebog} is split to @code{streebog256} and
+        @code{streebog512} correspondingly by analogy with sha* utilities
+    @item added VKO 34.10-2012 support with corresponding test vectors
+    @item @code{gost3410.DigestSizeX} is renamed to
+        @code{gost3410.ModeX} because it is not related to digest size,
+        but parameters and key sizes
+    @item KEK functions take @code{big.Int} UKM value. Use @code{NewUKM}
+        to unmarshal raw binary UKM
+    @end itemize
+
+@anchor{Release 1.1}
+@item 1.1
+    @itemize
+    @item gogost-streebog is able to use either 256 or 512 bits digest size
+    @item 34.13-2015 padding methods
+    @item 28147-89 CBC mode of operation
+    @end itemize
+
+@end table
