@@ -17,7 +17,7 @@
 package gost341264
 
 import (
-	"go.cypherpunks.ru/gogost/v5/gost28147"
+	"github.com/hitchpock/gogost/v5/gost28147"
 )
 
 const (

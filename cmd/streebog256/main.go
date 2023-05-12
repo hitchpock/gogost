@@ -23,8 +23,8 @@ import (
 	"io"
 	"os"
 
-	"go.cypherpunks.ru/gogost/v5"
-	"go.cypherpunks.ru/gogost/v5/gost34112012256"
+	"github.com/hitchpock/gogost/v5"
+	"github.com/hitchpock/gogost/v5/gost34112012256"
 )
 
 var (

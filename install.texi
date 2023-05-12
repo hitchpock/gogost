@@ -28,7 +28,7 @@ like this:
 
 @example
 $ mkdir -p myproj/vendor/go.cypherpunks.ru/gogost
-$ mv gogost-@value{VERSION} myproj/vendor/go.cypherpunks.ru/gogost/v5
+$ mv gogost-@value{VERSION} myproj/vendor/github.com/hitchpock/gogost/v5
 $ cd myproj
 $ cat > main.go <<EOF
 package main
@@ -37,7 +37,7 @@ import (
     "encoding/hex"
     "fmt"
 
-    "go.cypherpunks.ru/gogost/v5/gost34112012256"
+    "github.com/hitchpock/gogost/v5/gost34112012256"
 )
 
 func main() @{
@@ -84,7 +84,7 @@ GoGOST is also @command{go get}-able. For example to install
 @command{streebog256} utility:
 
 @example
-$ go install go.cypherpunks.ru/gogost/v5/cmd/streebog256@@latest
+$ go install github.com/hitchpock/gogost/v5/cmd/streebog256@@latest
 @end example
 
 @code{go.cypherpunks.ru} uses @code{ca.cypherpunks.ru} X.509 CA
@@ -106,15 +106,15 @@ $ gpg --auto-key-locate dane --locate-keys stargrave at stargrave dot org
 $ gpg --auto-key-locate  wkd --locate-keys stargrave at gnupg dot net
 $ gpg --verify cert.pem.asc
 $ SSL_CERT_FILE=`pwd`/cert.pem GIT_SSL_CAINFO=`pwd`/cert.pem go get \
-    go.cypherpunks.ru/gogost/v5
+    github.com/hitchpock/gogost/v5
 @end example
 
 @item You can unpack tarball somewhere and use @code{replace} command in
 your local @file{go.mod}:
 
 @example
-require go.cypherpunks.ru/gogost/v5 v@value{VERSION}
-replace go.cypherpunks.ru/gogost/v5 => /path/to/gogost-@value{VERSION}
+require github.com/hitchpock/gogost/v5 v@value{VERSION}
+replace github.com/hitchpock/gogost/v5 => /path/to/gogost-@value{VERSION}
 @end example
 
 @end itemize
